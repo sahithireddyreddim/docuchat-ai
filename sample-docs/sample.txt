@@ -1,0 +1,107 @@
+DocuChat AI — Sample Document for Testing
+==========================================
+
+This is a sample document to help you test the DocuChat AI system.
+Upload this file and ask questions to verify everything is working.
+
+About DocuChat AI
+-----------------
+DocuChat AI is a Retrieval-Augmented Generation (RAG) chatbot that allows users to:
+1. Upload documents (PDF, DOCX, TXT)
+2. Ask natural language questions
+3. Get AI-powered answers with source citations
+4. Maintain conversation history across sessions
+
+Technical Architecture
+----------------------
+The system uses the following technology stack:
+
+Backend:
+- FastAPI (Python) — High-performance async web framework
+- ChromaDB — Vector database for semantic search
+- Sentence Transformers — Local embedding model (all-MiniLM-L6-v2)
+- Groq LLM — Fast inference with Llama models
+- SQLite — Lightweight database for users and chat history
+- PyPDF2 + pytesseract — PDF parsing with OCR fallback
+
+Frontend:
+- Next.js 15 — React framework with App Router
+- Tailwind CSS — Utility-first styling
+- React Markdown — Rendering formatted AI responses
+- React Dropzone — Drag-and-drop file uploads
+- Web Speech API — Browser-native voice input
+
+RAG Pipeline Explained
+-----------------------
+Step 1: Document Ingestion
+  - User uploads a document
+  - Text is extracted (with OCR fallback for scanned PDFs)
+  - Text is split into overlapping chunks (1000 chars, 200 overlap)
+
+Step 2: Embedding & Indexing
+  - Each chunk is converted to a 384-dimension vector
+  - Vectors are stored in ChromaDB with metadata
+
+Step 3: Retrieval
+  - User's question is embedded using the same model
+  - Top-5 most similar chunks are retrieved via cosine similarity
+  - Only chunks above 30% similarity threshold are used
+
+Step 4: Generation
+  - Retrieved chunks + conversation history are sent to Groq LLM
+  - LLM generates a grounded answer with citations
+  - Response is streamed token-by-token to the frontend
+
+Key Features for Freelance Clients
+------------------------------------
+1. Multi-tenant: Each user's documents are isolated
+2. Streaming: Real-time responses like ChatGPT
+3. Source citations: Clients can verify every answer
+4. OCR support: Works with scanned documents
+5. Voice input: Hands-free question asking
+6. PDF export: Save conversations for records
+7. Admin panel: Monitor usage across all users
+8. Multi-document querying: Ask across multiple files at once
+
+Pricing Suggestion for Freelance Projects
+------------------------------------------
+- Basic setup (single user, local): $500-800
+- Small business (multi-user, cloud): $1,500-3,000
+- Enterprise (custom domain, SSO, branding): $5,000-10,000
+- Monthly maintenance: $100-500/month
+
+Frequently Asked Questions
+---------------------------
+Q: What file types are supported?
+A: PDF (including scanned with OCR), DOCX (Word), and TXT files.
+
+Q: Is there a file size limit?
+A: Yes, 50MB per file. This can be adjusted in the config.
+
+Q: How many documents can I upload?
+A: There is no hard limit. Performance depends on your hardware.
+
+Q: Does it work offline?
+A: The embeddings work offline. You need internet for the Groq LLM API.
+
+Q: Can I use a different LLM?
+A: Yes! You can swap Groq for OpenAI, Anthropic, or even Ollama (local).
+
+Q: How accurate are the answers?
+A: The system only answers from uploaded documents and clearly states
+   when it doesn't have enough information, minimizing hallucinations.
+
+Test Questions to Ask
+---------------------
+After uploading this document, try asking:
+- "What is the RAG pipeline?"
+- "What file types does DocuChat support?"
+- "How much should I charge for a basic setup?"
+- "What technology does the frontend use?"
+- "How does the embedding process work?"
+- "What are the key features for freelance clients?"
+
+Contact & Support
+-----------------
+This project is open source and portfolio-ready.
+Star it on GitHub and use it as a base for your freelance projects!
