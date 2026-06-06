@@ -92,12 +92,11 @@ def query_documents(
             results["metadatas"][0],
             results["distances"][0],
         ):
-            similarity = 1 - distance
-            if similarity >= settings.SIMILARITY_THRESHOLD:
-                output.append({
-                    "text": text,
-                    "metadata": meta,
-                    "score": round(similarity, 4),
+            similarity = max(0.0, 1-distance)
+            output.append({
+                "text": text,
+                "metadata": meta,
+                "score": round(similarity, 4),
                 })
 
     return output
