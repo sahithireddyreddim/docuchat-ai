@@ -10,9 +10,14 @@ services:
       mountPath: /data
       sizeGB: 1
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.10
+
       - key: UPLOAD_DIR
         value: /data/uploads
+
       - key: CHROMA_DIR
         value: /data/chroma_db
+
       - key: DATABASE_URL
         value: sqlite+aiosqlite:////data/docuchat.db
