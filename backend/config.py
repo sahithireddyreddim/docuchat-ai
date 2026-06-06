@@ -40,7 +40,7 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 1000       # Characters per chunk
     CHUNK_OVERLAP: int = 200     # Overlap between chunks
     TOP_K_RESULTS: int = 5       # Number of chunks to retrieve
-    SIMILARITY_THRESHOLD: float = 0.3   # Min similarity score (lower = more results)
+    SIMILARITY_THRESHOLD: float = 0.0   # Min similarity score (lower = more results)
 
     # CORS (update for production)
     CORS_ORIGINS: list = ["http://localhost:3000", "http://127.0.0.1:3000"]
